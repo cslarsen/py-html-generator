@@ -35,12 +35,23 @@ def Tag(name):
   class _NamedTag():
     def __init__(self, *items, **attrs):
       self.name = name
-      self.items = items
+      self.items = list(items)
       self.attrs = attrs
       self.indent = 0
 
+      # any dicts in items are added to attrs
+      for i in self.items:
+        if isinstance(i, dict):
+          self.items.remove(i)
+          attrs.update(i)
+
     def __str__(self):
-      s = "  " * self.indent
+      s = ""
+
+      # Not a typical inline tag?
+      if not self.name in ["a", "span"]: # etc.
+        s = "  " * self.indent
+
       if self.name is not None:
         s += "<%s" % self.name
         for k,v in self.attrs.items():
@@ -57,13 +68,12 @@ def Tag(name):
       if text:
         newlines = any(map(lambda t: t.count("\n")>0, self.items))
 
-      for num, item in enumerate(self.items):
+      for item in self.items:
         if isinstance(item, "".__class__):
           if newlines:
             s += "\n"
             s += "  "*(self.indent+1)
           s += escape(item.lstrip())
-          if num+1 < len(self.items): s += " "
         else:
           item.indent = self.indent + 1
           s += item.__str__()
@@ -88,15 +98,16 @@ style = Tag("style")
 h1 = Tag("h1")
 p = Tag("p")
 body = Tag("body")
+a = Tag("a")
 
 if __name__ == "__main__":
   print("<!DOCTYPE html>")
   print(
-    html(
-      head(title("Hello,", "world!"),
-        style("body { color:red; }\n", type="text/css")),
-      body(
-        h1("Welcome"),
-        p("This is a paragraph.", "3 > 2"),
-        p("This is another.")), lang="en"))
-
+      html({"lang": "en"},
+        head(
+          title("Hello, ", "world!"),
+          style("body { color:red; }\n", type="text/css")),
+        body(
+          h1("Welcome"),
+          p("This is a paragraph. ", "3 > 2"),
+          p("This is another."))))
