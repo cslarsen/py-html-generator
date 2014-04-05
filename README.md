@@ -23,7 +23,7 @@ Running
       html(
         head(
           title("Hello, ", "world!"),
-          style("body { color:red; }\n", type="text/html")),
+          style("body { color:red; }\n", type="text/css")),
         body(
           h1("Welcome"),
           p("This is a paragraph."),
@@ -35,7 +35,7 @@ produces
     <html lang='en'>
       <head>
         <title>Hello,  world!</title>
-        <style type='text/html'>
+        <style type='text/css'>
           body { color:red; }
         </style>
       </head>

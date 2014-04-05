@@ -94,7 +94,7 @@ if __name__ == "__main__":
   print(
     html(
       head(title("Hello,", "world!"),
-        style("body { color:red; }\n", type="text/html")),
+        style("body { color:red; }\n", type="text/css")),
       body(
         h1("Welcome"),
         p("This is a paragraph.", "3 > 2"),
