@@ -3,14 +3,6 @@ Python HTML document tree generator and rendering library
 
 A quick-and-dirty HTML generator library.
 
-License
--------
-Written by Christian Stigen Larsen
-2014-03-05
-
-Placed in the public domain by the author.
-
-
 Example
 -------
 
@@ -22,7 +14,7 @@ Running
     print(
       html(
         head(
-          title("Hello, ", "world!"),
+          title("Hello,", "world!"),
           style("body { color:red; }\n", type="text/css")),
         body(
           h1("Welcome"),
@@ -46,6 +38,13 @@ produces
       </body>
     </html>
 
+License
+-------
+Written by Christian Stigen Larsen
+
+Placed in the public domain by the author.
+
+2014-03-05
 
 Adding more tags
 ----------------
