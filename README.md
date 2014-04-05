@@ -14,6 +14,8 @@ Placed in the public domain by the author.
 Example
 -------
 
+Running
+
     from html_generator import *
 
     print(
@@ -24,6 +26,23 @@ Example
           h1("Welcome"),
           p("This is a paragraph."),
           p("This is another.")), lang="en"))
+
+produces
+
+    <html lang='en'>
+      <head>
+        <title>Hello,  world!</title>
+        <style type='text/html'>
+          body { color:red; }
+        </style>
+      </head>
+      <body>
+        <h1>Welcome</h1>
+        <p>This is a paragraph.</p>
+        <p>This is another.</p>
+      </body>
+    </html>
+
 
 Problems
 --------
