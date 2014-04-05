@@ -21,7 +21,8 @@ Running
     print("<!DOCTYPE html>")
     print(
       html(
-        head(title("Hello, ", "world!"),
+        head(
+          title("Hello, ", "world!"),
           style("body { color:red; }\n", type="text/html")),
         body(
           h1("Welcome"),
