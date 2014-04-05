@@ -1,5 +1,5 @@
-pyhtmlgenerator
-================
+Python HTML document tree generator and rendering library
+=========================================================
 
 A quick-and-dirty HTML generator library.
 
