@@ -1,5 +1,6 @@
 from html_generator import *
 
+print("<!DOCTYPE html>")
 print(
   html(
     head(title("Hello, ", "world!"),

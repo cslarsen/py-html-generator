@@ -18,6 +18,7 @@ Running
 
     from html_generator import *
 
+    print("<!DOCTYPE html>")
     print(
       html(
         head(title("Hello, ", "world!"),
@@ -29,6 +30,7 @@ Running
 
 produces
 
+    <!DOCTYPE html>
     <html lang='en'>
       <head>
         <title>Hello,  world!</title>
@@ -43,6 +45,16 @@ produces
       </body>
     </html>
 
+
+Adding more tags
+----------------
+
+I've only added support for the HTML tags used in the example.
+You can add more by doing, e.g.
+
+    table = Tag("table")
+    tr = Tag("tr")
+    td = Tag("td")
 
 Problems
 --------
@@ -66,3 +78,5 @@ I think a solution would be to do
 with some special handling of `attrs', but that doesn't look as natural as
 using normal keywords.
 
+Also, I don't support so-called empty tags, as in `<br/>`.  You're free to
+add it, though!
