@@ -76,7 +76,13 @@ I think a solution would be to do
     html(attrs(lang="en"), body("hello, world"))
 
 with some special handling of `attrs', but that doesn't look as natural as
-using normal keywords.
+using normal keywords.  This leads to something that could work:
+
+    html({"lang": "en"}, body("hello, world"))
+
+Which is probably what I'd do in an update.  It could co-exist with the
+other keyword-based approach, so the user could choose what looks best in
+each context.
 
 Also, I don't support so-called empty tags, as in `<br/>`.  You're free to
 add it, though!
