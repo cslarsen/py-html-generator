@@ -20,6 +20,14 @@ with some special handling of `attrs', but that doesn't look as natural as
 using normal keywords.
 """
 
+import cgi
+
+def escape(s):
+  return cgi.escape(s).encode('utf-8', 'xmlcharrefreplace')
+
+def escape_attr(s):
+  return escape(s).replace("'", "\"")
+
 def Tag(name):
   """Returns a named tag class."""
   class _NamedTag():
@@ -34,7 +42,7 @@ def Tag(name):
       if self.name is not None:
         s += "<%s" % self.name
         for k,v in self.attrs.items():
-          s += " {}='{}'".format(k,v)
+          s += " {}='{}'".format(k, escape_attr(v))
         s += ">"
 
       # Only contains text?
@@ -52,7 +60,7 @@ def Tag(name):
           if newlines:
             s += "\n"
             s += "  "*(self.indent+1)
-          s += item.lstrip()
+          s += escape(item.lstrip())
           if num+1 < len(self.items): s += " "
         else:
           item.indent = self.indent + 1
@@ -80,12 +88,13 @@ p = Tag("p")
 body = Tag("body")
 
 if __name__ == "__main__":
+  print("<!DOCTYPE html>")
   print(
     html(
-      head(title("Hello, ", "world!"),
+      head(title("Hello,", "world!"),
         style("body { color:red; }\n", type="text/html")),
       body(
         h1("Welcome"),
-        p("This is a paragraph."),
+        p("This is a paragraph.", "3 > 2"),
         p("This is another.")), lang="en"))
 
