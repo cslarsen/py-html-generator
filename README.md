@@ -26,7 +26,7 @@ produces
     <!DOCTYPE html>
     <html lang='en'>
       <head>
-        <title>Hello,  world!</title>
+        <title>Hello, world!</title>
         <style type='text/css'>
           body { color:red; }
         </style>
