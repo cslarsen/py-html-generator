@@ -23,9 +23,11 @@ using normal keywords.
 import cgi
 
 def escape(s):
+  """Escapes special characters for HTML text."""
   return cgi.escape(s).encode('utf-8', 'xmlcharrefreplace')
 
 def escape_attr(s):
+  """Escapes special characters for attribute values."""
   return escape(s).replace("'", "\"")
 
 def Tag(name):
